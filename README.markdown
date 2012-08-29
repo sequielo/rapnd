@@ -18,7 +18,6 @@ Usage: rapnd start [options]
         --queue=OPTIONAL             Name of the redis queue
         --foreground                 Run in the foreground
         --dir=OPTIONAL               Directory to start in
-        --airbrake=OPTIONAL          Airbrake API key
         --help                       Show help
 ```
 

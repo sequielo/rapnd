@@ -4,12 +4,11 @@ require 'socket'
 require 'active_support/ordered_hash'
 require 'active_support/json'
 require 'base64'
-require 'airbrake'
 require 'logger'
 
 module Rapnd
   class Daemon
-    attr_accessor :redis, :host, :apple, :cert, :queue, :connected, :logger, :airbrake
+    attr_accessor :redis, :host, :apple, :cert, :queue, :connected, :logger
     
     def initialize(options = {})
       options[:redis_host]  ||= 'localhost'
@@ -18,8 +17,6 @@ module Rapnd
       options[:queue]       ||= 'rapnd_queue'
       options[:password]    ||= ''
       raise 'No cert provided!' unless options[:cert]
-      
-      Airbrake.configure { |config| config.api_key = options[:airbrake]; @airbrake = true; } if options[:airbrake]
       
       redis_options = { :host => options[:redis_host], :port => options[:redis_port] }
       redis_options[:password] = options[:redis_password] if options.has_key?(:redis_password)
@@ -69,7 +66,6 @@ module Rapnd
             @logger.info "Trying again for: #{notification.json_payload}"
             self.apple.write(notification.to_bytes)
           end
-          Airbrake.notify(e, {:environment_name => self.queue }) if @airbrake
           @logger.error "Encountered error: #{e}"
         end
       end
