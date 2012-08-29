@@ -22,7 +22,13 @@ module Rapnd
     
     def json_payload
       j = ActiveSupport::JSON.encode(payload)
-      raise "The payload #{j} is larger than allowed: #{j.length}" if j.size > 256
+      while j.bytesize > 256 && payload[:alert].size > 0 do
+        payload[:alert] = payload[:alert][0..-2]
+        j = ActiveSupport::JSON.encode(payload)        
+      end
+      if j.bytesize > 256
+        raise "The payload #{j} is larger than allowed: #{j.length}" if j.size > 256
+      end
       j
     end
     
