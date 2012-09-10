@@ -3,7 +3,7 @@ module Rapnd
     attr_accessor :host, :cert, :logger, :airbrake
     
     def initialize(options = {})
-      options[:host]        ||= 'gateway.sandbox.push.apple.com'
+      options[:host]        ||= 'feedback.sandbox.push.apple.com'
       options[:password]    ||= ''
       raise 'No cert provided!' unless options[:cert]
       
@@ -22,7 +22,7 @@ module Rapnd
       context.cert = OpenSSL::X509::Certificate.new(File.read(@cert))
       context.key  = OpenSSL::PKey::RSA.new(File.read(@cert), @password)
       
-      sock     = TCPSocket.new(@host, 2195)
+      sock     = TCPSocket.new(@host, 2196)
       ssl      = OpenSSL::SSL::SSLSocket.new(sock, context)
       ssl.sync = true
       ssl.connect
