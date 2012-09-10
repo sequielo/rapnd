@@ -13,11 +13,11 @@ module Rapnd
       
       @cert = options[:cert]
       @host = options[:host]
-      @logger = Logger.new("#{options[:dir]}/log/feedback.log")
+      # @logger = Logger.new("#{options[:dir]}/log/feedback.log")
     end
     
     def expired_tokens
-      @logger.info 'Connecting...'
+      # @logger.info 'Connecting...'
       context      = OpenSSL::SSL::SSLContext.new
       context.cert = OpenSSL::X509::Certificate.new(File.read(@cert))
       context.key  = OpenSSL::PKey::RSA.new(File.read(@cert), @password)
@@ -26,7 +26,7 @@ module Rapnd
       ssl      = OpenSSL::SSL::SSLSocket.new(sock, context)
       ssl.sync = true
       ssl.connect
-      @logger.info 'Connected!'
+      # @logger.info 'Connected!'
       
       devices = []
       
