@@ -24,6 +24,8 @@ module Rapnd
       redis_options = { :host => options[:redis_host], :port => options[:redis_port] }
       redis_options[:password] = options[:redis_password] if options.has_key?(:redis_password)
       
+      options[:host] = set_host(options[:host])
+      
       @redis = Redis.new(redis_options)
       @queue = options[:queue]
       @cert = options[:cert]
@@ -72,6 +74,19 @@ module Rapnd
           Airbrake.notify(e, {:environment_name => self.queue }) if @airbrake
           @logger.error "Encountered error: #{e}"
         end
+      end
+    end
+    
+    private
+    
+    # This method provides a simple way set host to Apple's predefined
+    # hosts based on setting the `:host` option as a simple. The two options are
+    # `:sandbox` and `:production`.
+    def set_host(host)
+      case host
+        when :sandbox then 'gateway.sandbox.push.apple.com'
+        when :production then 'gateway.push.apple.com'
+        else host
       end
     end
   end
