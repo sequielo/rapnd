@@ -34,7 +34,8 @@ module Rapnd
     
     def to_bytes
       j = json_payload
-      [0, 0, 32, self.device_token, 0, j.bytesize, j].pack("cccH*cca*").force_encoding('ASCII-8BIT')
+      # force_encoding works on ruby 1.9
+      [0, 0, 32, self.device_token, 0, j.bytesize, j].pack("cccH*cca*")#.force_encoding('ASCII-8BIT')
     end
   end
 end
