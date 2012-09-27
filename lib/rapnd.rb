@@ -25,7 +25,7 @@ module Rapnd
   #
   def send_alert(device_token, queue_name, alert, other_properties=nil)
     message = {
-      :device_token => device_token.strip.gsub(/<>/,''),
+      :device_token => device_token.strip.delete('<>'),
       :alert        => alert,
     }
     message.merge!(other_properties) if other_properties
