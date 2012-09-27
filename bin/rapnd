@@ -3,11 +3,11 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 ARGV << '--help' if ARGV.empty?
 
+require 'rubygems'
 require 'optparse'
 require 'rapnd'
 require 'daemons'
-
-command = ARGV.shift
+require 'fileutils'
 
 options = {}
 OptionParser.new do |opts|
@@ -58,26 +58,25 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-case command
-when 'start'
-  unless options[:foreground]
-    Daemons.daemonize(
-      :app_name => options[:queue],
-      :dir_mode => :normal,
-      :dir => "#{options[:dir]}/tmp",
-      :log_dir => "#{options[:dir]}/log",
-      :backtrace => true,
-      :log_output => true
-    )
-  end
 
-  Rapnd::Daemon.new(options).run!
-when 'stop'
-  unless options[:foreground]
-    files = Daemons::PidFile.find_files("#{options[:dir]}/tmp", options[:queue])
-    files.each do |file|
-      pid = File.open(file) {|h| h.read}.to_i
-      `kill -9 #{pid}`
-    end
-  end
+daemon_options={
+  #:on_top => true,
+  :app_name => options[:queue],
+  :dir_mode => :normal,
+  :dir => "#{options[:dir]}/tmp",
+  #:log_dir => "#{options[:dir]}/log",
+  :backtrace => true,
+  :log_output => true
+}
+
+pwd = FileUtils.pwd
+options.merge!({:dir=>pwd})
+
+command  = ARGV.first
+starting = (command == 'start')
+puts " -- Starting..."  if starting
+
+
+Daemons.run_proc("rapnd", daemon_options) do
+  Rapnd::Daemon.new(options).run!  if starting
 end
