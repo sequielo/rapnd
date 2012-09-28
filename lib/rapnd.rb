@@ -20,17 +20,18 @@ module Rapnd
   alias :config :configure
   
   
-  # Send an alert to the device, through a queue.
+  # Send an alert to the device.
+  # Uses default queue_name.
   # other_properties: badge, sound, custom_properties
   #
-  def send_alert(device_token, queue_name, alert, other_properties=nil)
+  def send_alert(device_token, alert, other_properties=nil)
     message = {
       :device_token => device_token.strip.delete('<>'),
       :alert        => alert,
     }
     message.merge!(other_properties) if other_properties
     
-    self.queue(queue_name, message)
+    self.queue(Rapnd.config.queue_name, message)
   end
 
 end
