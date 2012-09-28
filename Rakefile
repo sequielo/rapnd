@@ -14,13 +14,13 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "rapnd"
-  gem.homepage = "http://github.com/Veraticus/rapnd"
+  gem.name = "sequielo-rapnd"
+  gem.homepage = "http://github.com/sequielo/rapnd"
   gem.license = "MIT"
   gem.summary = %Q{redis APN daemon}
   gem.description = %Q{redis APN daemon}
-  gem.email = "veraticus@gmail.com"
-  gem.authors = ["Josh Symonds"]
+  gem.email = "dev@sequielo.com.ar"
+  gem.authors = ["Exequiel Curia"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
