@@ -11,11 +11,10 @@ module Rapnd
     attr_accessor :redis, :host, :apple, :cert, :queue, :connected, :logger
     
     def initialize(options = {})
-      options[:redis_host]  ||= 'localhost'
-      options[:redis_port]  ||= '6379'
+      options[:redis_host]  ||= Rapnd.config.redis_host
+      options[:redis_port]  ||= Rapnd.config.redis_port
       options[:host]        ||= 'gateway.sandbox.push.apple.com'
-      options[:queue]       ||= 'rapnd_queue'
-      options[:password]    ||= ''
+      options[:queue]       ||= Rapnd.config.queue_name
       raise 'No cert provided!' unless options[:cert]
       
       redis_options = { :host => options[:redis_host], :port => options[:redis_port] }
@@ -71,8 +70,5 @@ module Rapnd
       end
     end
   end
-  
-  def send_message(message)
-    
-  end
+
 end
