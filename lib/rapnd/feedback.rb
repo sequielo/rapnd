@@ -31,7 +31,7 @@ module Rapnd
       devices = []
       
       while data = ssl.read(38)
-        feedback = data.unpack('N1n1H140')            
+        feedback = data.unpack('N1n1H64')            
         token = feedback[2].scan(/.{0,8}/).join(' ').strip
         devices << token
       end
