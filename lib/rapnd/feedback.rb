@@ -30,8 +30,8 @@ module Rapnd
       
       devices = []
       
-      while data = sock.read(38)
-        feedback = data.unpack('N1n1H64')            
+      while data = ssl.read(38)
+        feedback = data.unpack('N1n1H140')            
         token = feedback[2].scan(/.{0,8}/).join(' ').strip
         devices << token
       end
