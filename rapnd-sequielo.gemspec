@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "rapnd-mikec54088"
-  s.version = "0.5.2"
+  s.name = "rapnd-sequielo"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Josh Symonds"]
-  s.date = "2012-05-22"
+  s.authors = ["Exequiel Curia"]
+  s.date = "2013-01-18"
   s.description = "redis APN daemon"
-  s.email = "veraticus@gmail.com"
+  s.email = "dev@sequielo.com.ar"
   s.executables = ["rapnd"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
     "lib/rapnd/config.rb",
     "lib/rapnd/daemon.rb",
     "lib/rapnd/notification.rb",
-    "rapnd.gemspec",
+    "rapnd-sequielo.gemspec",
     "spec/config_spec.rb",
     "spec/daemon_spec.rb",
     "spec/notification_spec.rb",
@@ -39,10 +39,10 @@ Gem::Specification.new do |s|
     "spec/redis-test.conf",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "http://github.com/Veraticus/rapnd"
+  s.homepage = "http://github.com/sequielo/rapnd"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.23"
+  s.rubygems_version = "1.8.17"
   s.summary = "redis APN daemon"
 
   if s.respond_to? :specification_version then
@@ -50,9 +50,9 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<hiredis>, ["~> 0.4.4"])
-      s.add_runtime_dependency(%q<redis>, ["~> 2.2.2"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
-      s.add_runtime_dependency(%q<daemons>, ["= 1.1.6"])
+      s.add_runtime_dependency(%q<redis>, ["~> 3.0.1"])
+      s.add_runtime_dependency(%q<activesupport>, ["~> 2.0"])
+      s.add_runtime_dependency(%q<daemons>, ["~> 1.1"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
@@ -61,9 +61,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<hiredis>, ["~> 0.4.4"])
-      s.add_dependency(%q<redis>, ["~> 2.2.2"])
-      s.add_dependency(%q<activesupport>, [">= 0"])
-      s.add_dependency(%q<daemons>, ["= 1.1.6"])
+      s.add_dependency(%q<redis>, ["~> 3.0.1"])
+      s.add_dependency(%q<activesupport>, ["~> 2.0"])
+      s.add_dependency(%q<daemons>, ["~> 1.1"])
       s.add_dependency(%q<i18n>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
@@ -73,9 +73,9 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<hiredis>, ["~> 0.4.4"])
-    s.add_dependency(%q<redis>, ["~> 2.2.2"])
-    s.add_dependency(%q<activesupport>, [">= 0"])
-    s.add_dependency(%q<daemons>, ["= 1.1.6"])
+    s.add_dependency(%q<redis>, ["~> 3.0.1"])
+    s.add_dependency(%q<activesupport>, ["~> 2.0"])
+    s.add_dependency(%q<daemons>, ["~> 1.1"])
     s.add_dependency(%q<i18n>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
