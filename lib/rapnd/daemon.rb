@@ -2,7 +2,7 @@ require 'redis'
 require 'openssl'
 require 'socket'
 require 'active_support/ordered_hash'
-require 'active_support/json'
+require 'active_support'
 require 'base64'
 require 'logger'
 
