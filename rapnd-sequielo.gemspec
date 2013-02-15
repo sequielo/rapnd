@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "rapnd-sequielo"
-  s.version = "0.6.0"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Exequiel Curia"]
-  s.date = "2013-01-18"
+  s.date = "2013-02-15"
   s.description = "redis APN daemon"
   s.email = "dev@sequielo.com.ar"
   s.executables = ["rapnd"]
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/rapnd.rb",
     "lib/rapnd/config.rb",
     "lib/rapnd/daemon.rb",
+    "lib/rapnd/feedback.rb",
     "lib/rapnd/notification.rb",
     "rapnd-sequielo.gemspec",
     "spec/config_spec.rb",
